@@ -310,27 +310,117 @@ button:disabled {
     box-shadow: none;
 }
 
-#musicButton {
-    background-color: #6a5acd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#musicButton::before {
-    content: "♪";
-    font-size: 20px;
-    margin-right: 8px;
-}
-
-#musicButton:hover {
-    background-color: #5849b8;
-}
-
 .status {
     margin-top: 20px;
     font-size: 18px;
     color: #555;
     height: 24px;
     font-weight: 500;
+}
+
+/* Styles pour la galerie photo */
+.photo-gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.photo-container {
+    position: absolute;
+    top: -300px; /* Commence hors de l'écran */
+    transform: translateY(0);
+    animation: fallDown 3s forwards, swing 4s ease-in-out infinite alternate;
+    opacity: 0;
+}
+
+@keyframes fallDown {
+    0% {
+        top: -300px;
+        opacity: 0;
+        transform: translateY(0) rotate(-5deg);
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        top: 0;
+        opacity: 1;
+        transform: translateY(100px) rotate(3deg);
+    }
+}
+
+@keyframes swing {
+    0% {
+        transform: translateY(100px) rotate(-3deg);
+    }
+    100% {
+        transform: translateY(100px) rotate(3deg);
+    }
+}
+
+.photo-delay-0 { animation-delay: 0s; left: 5%; }
+.photo-delay-1 { animation-delay: 1s; left: 15%; }
+.photo-delay-2 { animation-delay: 2s; left: 25%; }
+.photo-delay-3 { animation-delay: 3s; left: 35%; }
+.photo-delay-4 { animation-delay: 4s; left: 45%; }
+.photo-delay-5 { animation-delay: 5s; left: 55%; }
+.photo-delay-6 { animation-delay: 6s; left: 65%; }
+.photo-delay-7 { animation-delay: 7s; left: 75%; }
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 45px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: rotate(var(--rotation, -5deg));
+    position: relative;
+    transition: transform 0.3s ease;
+    width: 150px;
+    height: auto;
+}
+
+.polaroid:hover {
+    transform: rotate(var(--rotation, -5deg)) scale(1.1);
+    z-index: 10;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.pin {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f44336;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.string {
+    width: 2px;
+    background: #9e9e9e;
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100px;
+    z-index: 1;
+}
+
+/* Style pour les éléments cachés */
+.hidden {
+    display: none;
 }

@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Éléments du DOM
     const startButton = document.getElementById('startButton');
     const resetButton = document.getElementById('resetButton');
-    const musicButton = document.getElementById('musicButton');
     const flame = document.getElementById('flame');
     const statusElement = document.getElementById('status');
     const birthdaySong = document.getElementById('birthdaySong');
@@ -14,17 +13,39 @@ document.addEventListener('DOMContentLoaded', () => {
     let javascriptNode;
     let isBlowing = false;
     let blowingTimeout;
-    let isMusicPlaying = false;
+    let musicStarted = false;
     
-    // Constantes pour la détection du souffle
+    // Fonction pour tenter de jouer la musique
+    function tryPlayMusic() {
+        if (!musicStarted) {
+            birthdaySong.volume = 0.7; // Volume à 70%
+            birthdaySong.play().then(() => {
+                musicStarted = true;
+                console.log("Musique démarrée avec succès");
+            }).catch(error => {
+                console.log("Lecture automatique bloquée. Réessaierons à la prochaine interaction.", error);
+            });
+        }
+    }
+    
+    // Essayer de démarrer la musique au chargement de la page
+    tryPlayMusic();
+    
+    // Événements pour tenter de démarrer la musique après différentes interactions utilisateur
+    document.addEventListener('click', tryPlayMusic);
+    document.addEventListener('touchstart', tryPlayMusic);
+    document.addEventListener('keydown', tryPlayMusic);
+    window.addEventListener('scroll', tryPlayMusic);
+      // Constantes pour la détection du souffle
     const BLOW_THRESHOLD = 50; // Seuil pour détecter un souffle
     const BLOW_DURATION = 500; // Durée minimale du souffle en ms
     
     // Désactiver le bouton de réinitialisation au début
-    resetButton.disabled = true;
-    
-    // Fonction pour démarrer l'analyse du microphone
+    resetButton.disabled = true;    // Fonction pour démarrer l'analyse du microphone
     startButton.addEventListener('click', async () => {
+        // Essayer de démarrer la musique quand l'utilisateur clique sur le bouton du microphone
+        tryPlayMusic();
+        
         try {
             // Demander l'autorisation d'accéder au microphone
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -91,9 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         return values / length;
-    }
-    
-    // Fonction pour éteindre la bougie
+    }    // Fonction pour éteindre la bougie
     function extinguishCandle() {
         // Arrêter l'analyse audio
         if (javascriptNode) {
@@ -109,49 +128,24 @@ document.addEventListener('DOMContentLoaded', () => {
         statusElement.textContent = "Bravo! Vous avez éteint la bougie!";
         resetButton.disabled = false;
         
-        // Jouer un son d'applaudissement et la chanson d'anniversaire si elle n'est pas déjà en cours
+        // Jouer un son d'applaudissement (mais s'assurer que la musique continue)
         playApplauseSound();
-        if (!isMusicPlaying) {
-            playBirthdaySong();
-        }
+        
+        // S'assurer que la musique continue à jouer
+        tryPlayMusic();
     }
     
     // Fonction pour jouer un son d'applaudissement
     function playApplauseSound() {
         try {
             const applause = new Audio('https://freesound.org/data/previews/277/277021_5324723-lq.mp3');
+            applause.volume = 0.8; // Volume à 80%
             applause.play();
         } catch (error) {
             console.error("Impossible de jouer le son:", error);
         }
     }
-    
-    // Fonction pour gérer la lecture de la musique d'anniversaire
-    musicButton.addEventListener('click', () => {
-        if (isMusicPlaying) {
-            pauseBirthdaySong();
-        } else {
-            playBirthdaySong();
-        }
-    });
-    
-    // Fonction pour jouer la chanson d'anniversaire
-    function playBirthdaySong() {
-        birthdaySong.play();
-        isMusicPlaying = true;
-        musicButton.textContent = "Arrêter la musique";
-        statusElement.textContent = "Joyeux anniversaire! Profitez de la musique!";
-    }
-    
-    // Fonction pour arrêter la chanson d'anniversaire
-    function pauseBirthdaySong() {
-        birthdaySong.pause();
-        isMusicPlaying = false;
-        musicButton.textContent = "Jouer la musique";
-        statusElement.textContent = "Musique arrêtée. Cliquez sur 'Activer le microphone' et soufflez!";
-    }
-    
-    // Fonction pour rallumer la bougie
+      // Fonction pour rallumer la bougie
     resetButton.addEventListener('click', () => {
         // Réinitialiser la bougie
         flame.classList.remove('extinguished');
@@ -166,5 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (blowingTimeout) {
             clearTimeout(blowingTimeout);
         }
+        
+        // S'assurer que la musique continue à jouer
+        tryPlayMusic();
     });
 });
