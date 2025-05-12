@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gâteau d'Anniversaire Interactif</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Soufflez dans le microphone pour éteindre la bougie!</h1>
+        
+        <div class="cake-container">
+            <div class="cake">
+                <div class="layer layer-top"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-bottom"></div>
+                <div class="icing"></div>
+                <div class="candle">
+                    <div class="candle-body"></div>
+                    <div class="flame" id="flame"></div>
+                </div>
+                <div class="plate"></div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="startButton">Activer le microphone</button>
+            <button id="resetButton">Rallumer la bougie</button>
+            <button id="musicButton">Jouer la musique</button>
+        </div>
+        
+        <div class="status" id="status">Cliquez sur "Activer le microphone" et soufflez!</div>
+        
+        <!-- Élément audio caché -->
+        <audio id="birthdaySong" loop>
+            <source src="audio-editor-output.mp3" type="audio/mp3">
+            Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

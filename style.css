@@ -1,0 +1,336 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f0e5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(circle, #fff8f0 10%, transparent 10%), radial-gradient(circle, #fff8f0 10%, transparent 10%);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #e83e8c;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 2.2rem;
+}
+
+.cake-container {
+    position: relative;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.cake {
+    position: relative;
+    width: 220px;
+    height: 180px;
+    transform-style: preserve-3d;
+    transform: perspective(700px) rotateX(10deg);
+}
+
+.plate {
+    position: absolute;
+    bottom: -20px;
+    left: -25px;
+    width: 270px;
+    height: 20px;
+    background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.layer-bottom {
+    bottom: 0;
+    height: 60px;
+    width: 220px;
+    background: linear-gradient(to right, #ffcf99, #ffe0b5);
+    border-radius: 10px 10px 15px 15px;
+}
+
+.layer-middle {
+    bottom: 60px;
+    height: 55px;
+    width: 200px;
+    left: 10px;
+    background: linear-gradient(to right, #ffd1dc, #f8bbc7);
+    border-radius: 10px;
+}
+
+.layer-top {
+    bottom: 115px;
+    height: 50px;
+    width: 180px;
+    left: 20px;
+    background: linear-gradient(to right, #c6f8e5, #a9f1d9);
+    border-radius: 10px;
+}
+
+.icing {
+    position: absolute;
+    bottom: 165px;
+    left: 30px;
+    width: 160px;
+    height: 20px;
+    background: linear-gradient(to right, #ffffff, #f5f5f5);
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+}
+
+.icing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.5) 10px);
+}
+
+.candle {
+    position: absolute;
+    bottom: 165px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.candle-body {
+    width: 12px;
+    height: 40px;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+}
+
+.candle-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255, 255, 255, 0.2) 3px, rgba(255, 255, 255, 0.2) 6px);
+}
+
+.candle-body::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #f2cfc6;
+    border-radius: 3px 3px 0 0;
+}
+
+.flame {
+    width: 18px;
+    height: 35px;
+    background: radial-gradient(ellipse at bottom, #fffbb5, #ffdb6f 20%, #ff9933 40%, #ff5500 80%);
+    border-radius: 50% 50% 20% 20%;
+    position: relative;
+    left: -3px;
+    bottom: 35px;
+    box-shadow: 0 0 15px 7px rgba(255, 165, 0, 0.6);
+    animation: flicker 0.5s infinite alternate;
+    transform-origin: bottom center;
+}
+
+.flame::before {
+    content: '';
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.flame.extinguished {
+    opacity: 0;
+    height: 0;
+    transition: all 0.5s ease;
+}
+
+/* Decorations - Sprinkles on layers */
+.layer-top::before, .layer-middle::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 10px;
+    background-image: 
+        radial-gradient(circle, #ff6b6b 1px, transparent 1px),
+        radial-gradient(circle, #4ecdc4 1px, transparent 1px),
+        radial-gradient(circle, #ffbe0b 1px, transparent 1px),
+        radial-gradient(circle, #7400b8 1px, transparent 1px);
+    background-size: 10px 10px;
+    background-position: 0 0, 5px 5px, 3px 3px, 7px 7px;
+}
+
+/* Frosting drips */
+.layer-top::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background-image: 
+        radial-gradient(circle at 10% 0, transparent 15px, #a9f1d9 15px),
+        radial-gradient(circle at 30% 0, transparent 10px, #a9f1d9 10px),
+        radial-gradient(circle at 50% 0, transparent 12px, #a9f1d9 12px),
+        radial-gradient(circle at 70% 0, transparent 8px, #a9f1d9 8px),
+        radial-gradient(circle at 90% 0, transparent 14px, #a9f1d9 14px);
+    border-radius: 10px 10px 0 0;
+}
+
+.layer-middle::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background-image: 
+        radial-gradient(circle at 20% 0, transparent 12px, #f8bbc7 12px),
+        radial-gradient(circle at 40% 0, transparent 9px, #f8bbc7 9px),
+        radial-gradient(circle at 60% 0, transparent 13px, #f8bbc7 13px),
+        radial-gradient(circle at 80% 0, transparent 11px, #f8bbc7 11px);
+    border-radius: 10px 10px 0 0;
+}
+
+/* Cherry on top */
+.cake::before {
+    content: '';
+    position: absolute;
+    bottom: 185px;
+    left: 75px;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, #ff2e4c, #c90023);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.cake::after {
+    content: '';
+    position: absolute;
+    bottom: 193px;
+    left: 82px;
+    width: 2px;
+    height: 10px;
+    background: #006400;
+    transform: rotate(-20deg);
+    z-index: 9;
+}
+
+@keyframes flicker {
+    0% {
+        transform: scaleY(1) rotate(-1deg);
+        opacity: 0.9;
+    }
+    25% {
+        transform: scaleY(1.05) rotate(0deg);
+        opacity: 0.95;
+    }
+    50% {
+        transform: scaleY(1.1) rotate(1deg);
+        opacity: 1;
+    }
+    75% {
+        transform: scaleY(1.05) rotate(0deg);
+        opacity: 0.95;
+    }
+    100% {
+        transform: scaleY(1) rotate(-1deg);
+        opacity: 0.9;
+    }
+}
+
+.controls {
+    margin-top: 30px;
+}
+
+button {
+    background-color: #e83e8c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(232, 62, 140, 0.3);
+}
+
+button:hover {
+    background-color: #d33277;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(232, 62, 140, 0.4);
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#musicButton {
+    background-color: #6a5acd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#musicButton::before {
+    content: "♪";
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+#musicButton:hover {
+    background-color: #5849b8;
+}
+
+.status {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+    height: 24px;
+    font-weight: 500;
+}
