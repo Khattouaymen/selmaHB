@@ -1,48 +1,79 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f0e5;
+/* Réinitialisation et styles de base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdeff2; /* Rose très clair pour une ambiance douce */
+    color: #333;
+    line-height: 1.6;
     display: flex;
+    flex-direction: column; /* Permet de centrer le contenu si plus petit que la fenêtre */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: radial-gradient(circle, #fff8f0 10%, transparent 10%), radial-gradient(circle, #fff8f0 10%, transparent 10%);
-    background-size: 30px 30px;
-    background-position: 0 0, 15px 15px;
+    padding: 20px;
+    overflow-x: hidden; /* Empêcher le défilement horizontal causé par les photos */
+    background-image: radial-gradient(circle, rgba(255,223,230,0.5) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
     text-align: center;
-    max-width: 800px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 700px; /* Légèrement réduit pour un meilleur focus */
+    width: 90%; /* Pour la responsivité sur petits écrans */
+    padding: 30px 40px; /* Plus de padding interne */
+    background-color: rgba(255, 255, 255, 0.9); /* Fond blanc légèrement transparent */
+    border-radius: 25px; /* Coins plus arrondis */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
+    position: relative; /* Pour le z-index par rapport à la galerie photo */
+    z-index: 1; /* S'assurer que le contenu principal est au-dessus de la galerie si besoin */
+}
+
+header {
+    margin-bottom: 30px;
 }
 
 h1 {
-    color: #e83e8c;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 2.2rem;
+    font-family: 'Pacifico', cursive; /* Police plus festive, à ajouter via Google Fonts si besoin */
+    color: #e75480; /* Rose plus soutenu */
+    font-size: 2.5rem; /* Taille ajustée */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    line-height: 1.3;
 }
 
 .cake-container {
     position: relative;
-    height: 350px;
+    height: 380px; /* Légèrement augmenté pour plus d'espace */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px 0;
+    margin: 30px 0 50px 0; /* Ajustement des marges */
+    perspective: 800px; /* Augmenter la perspective pour un effet 3D plus prononcé */
 }
 
 .cake {
     position: relative;
-    width: 220px;
-    height: 180px;
+    width: 230px; /* Légèrement plus large */
+    height: 200px; /* Légèrement plus haut */
     transform-style: preserve-3d;
-    transform: perspective(700px) rotateX(10deg);
+    transition: transform 0.5s ease-out;
 }
 
 .plate {
@@ -53,7 +84,7 @@ h1 {
     height: 20px;
     background: linear-gradient(to bottom, #ffffff, #f0f0f0);
     border-radius: 50%;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* Adjusted shadow */
     z-index: 1;
 }
 
@@ -62,33 +93,33 @@ h1 {
     left: 0;
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
 }
 
 .layer-bottom {
     bottom: 0;
-    height: 60px;
-    width: 220px;
-    background: linear-gradient(to right, #ffcf99, #ffe0b5);
-    border-radius: 10px 10px 15px 15px;
+    height: 70px; /* Plus épaisse */
+    width: 230px;
+    background: linear-gradient(to right, #f7b2cc, #f39db9); /* Rose gâteau */
+    border-radius: 12px 12px 18px 18px; /* Coins inférieurs plus arrondis */
 }
 
 .layer-middle {
-    bottom: 60px;
-    height: 55px;
-    width: 200px;
+    bottom: 70px;
+    height: 65px; /* Plus épaisse */
+    width: 210px; /* Légèrement plus étroite */
     left: 10px;
-    background: linear-gradient(to right, #ffd1dc, #f8bbc7);
-    border-radius: 10px;
+    background: linear-gradient(to right, #f9cde0, #f5b8cf); /* Rose plus clair */
+    border-radius: 12px;
 }
 
 .layer-top {
-    bottom: 115px;
-    height: 50px;
-    width: 180px;
+    bottom: 135px;
+    height: 60px; /* Plus épaisse */
+    width: 190px; /* Plus étroite */
     left: 20px;
-    background: linear-gradient(to right, #c6f8e5, #a9f1d9);
-    border-radius: 10px;
+    background: linear-gradient(to right, #fce4ec, #f8c1d7); /* Rose très clair */
+    border-radius: 12px;
 }
 
 .icing {
@@ -100,24 +131,35 @@ h1 {
     background: linear-gradient(to right, #ffffff, #f5f5f5);
     border-radius: 10px 10px 0 0;
     overflow: hidden;
+    box-shadow: inset 0px 2px 3px rgba(0,0,0,0.06); /* Added inner shadow */
 }
 
-.icing::before {
+.icing::before { /* Simule des coulures */
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.5) 5px, rgba(255, 255, 255, 0.5) 10px);
+    bottom: -10px;
+    left: 20%;
+    width: 20px;
+    height: 20px;
+    background: inherit; /* Hérite du fond du glaçage */
+    border-radius: 50%;
+    box-shadow: 50px 0 0 0 inherit; /* Crée une autre coulure à côté */
+}
+
+.icing::after { /* Simule des coulures */
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 60%;
+    width: 25px;
+    height: 25px;
+    background: inherit;
+    border-radius: 50%;
 }
 
 .candle {
     position: absolute;
-    bottom: 165px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    bottom: 195px; /* Sur le glaçage */
 }
 
 .candle-body {
@@ -127,6 +169,7 @@ h1 {
     margin: 0 auto;
     border-radius: 3px;
     position: relative;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Added subtle shadow */
 }
 
 .candle-body::before {
@@ -136,44 +179,43 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255, 255, 255, 0.2) 3px, rgba(255, 255, 255, 0.2) 6px);
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.3) 2px,
+        rgba(255, 255, 255, 0.3) 4px
+    );
 }
 
 .candle-body::after {
-    content: '';
+    content: ''; /* Mèche de la bougie */
     position: absolute;
-    top: -5px;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: #f2cfc6;
-    border-radius: 3px 3px 0 0;
+    top: -8px; /* Au-dessus du corps de la bougie */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 10px;
+    background: #5d4037; /* Brun foncé pour la mèche */
+    border-radius: 2px;
 }
 
 .flame {
-    width: 18px;
-    height: 35px;
-    background: radial-gradient(ellipse at bottom, #fffbb5, #ffdb6f 20%, #ff9933 40%, #ff5500 80%);
-    border-radius: 50% 50% 20% 20%;
-    position: relative;
-    left: -3px;
-    bottom: 35px;
-    box-shadow: 0 0 15px 7px rgba(255, 165, 0, 0.6);
-    animation: flicker 0.5s infinite alternate;
-    transform-origin: bottom center;
-}
-
-.flame::before {
-    content: '';
-    position: absolute;
-    top: 70%;
+    width: 20px; /* Plus grande */
+    height: 40px; /* Plus haute */
+    background: radial-gradient(ellipse at bottom, 
+        #FFFDE7 5%,  /* Jaune très clair au centre */
+        #FFECB3 25%, /* Jaune clair */
+        #FFB74D 50%, /* Orange clair */
+        #FB8C00 80%, /* Orange */
+        transparent 100%
+    );
+    border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%; /* Forme de flamme plus organique */
+    position: absolute; /* Changé de relative */
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 12px;
-    background: #ffffff;
-    border-radius: 50%;
-    opacity: 0.4;
+    transform: translateX(-50%);
+    bottom: 50px; /* Positionné au-dessus de la mèche */
+    box-shadow: 0 0 20px 10px rgba(251, 140, 0, 0.5), 0 0 30px 15px rgba(255, 236, 179, 0.4); /* Lueur plus diffuse */
 }
 
 .flame.extinguished {
@@ -183,78 +225,37 @@ h1 {
 }
 
 /* Decorations - Sprinkles on layers */
-.layer-top::before, .layer-middle::before {
+.layer-top::before, .layer-middle::before, .layer-bottom::before { /* Sprinkles sur toutes les couches */
     content: '';
     position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    height: 10px;
+    top: 0; left: 0; right: 0; bottom: 0; /* Couvre toute la couche */
     background-image: 
-        radial-gradient(circle, #ff6b6b 1px, transparent 1px),
-        radial-gradient(circle, #4ecdc4 1px, transparent 1px),
-        radial-gradient(circle, #ffbe0b 1px, transparent 1px),
-        radial-gradient(circle, #7400b8 1px, transparent 1px);
-    background-size: 10px 10px;
-    background-position: 0 0, 5px 5px, 3px 3px, 7px 7px;
+        radial-gradient(circle, #ff8a80 1.5px, transparent 1.5px), /* Rouge-rose */
+        radial-gradient(circle, #80d8ff 1.5px, transparent 1.5px), /* Bleu clair */
+        radial-gradient(circle, #ffff8d 1.5px, transparent 1.5px), /* Jaune clair */
+        radial-gradient(circle, #ccff90 1.5px, transparent 1.5px); /* Vert clair */
+    background-size: 15px 15px, 15px 15px, 18px 18px, 20px 20px; /* Tailles et espacements variés */
+    background-position: 0 0, 7px 7px, 3px 10px, 10px 3px;
+    opacity: 0.7; /* Légèrement transparents */
+    pointer-events: none; /* Pour ne pas interférer avec le survol */
 }
 
-/* Frosting drips */
+/* Frosting drips - Simplifié et retiré pour l'instant, le glaçage a maintenant une forme qui coule */
 .layer-top::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    width: 100%;
-    height: 15px;
-    background-image: 
-        radial-gradient(circle at 10% 0, transparent 15px, #a9f1d9 15px),
-        radial-gradient(circle at 30% 0, transparent 10px, #a9f1d9 10px),
-        radial-gradient(circle at 50% 0, transparent 12px, #a9f1d9 12px),
-        radial-gradient(circle at 70% 0, transparent 8px, #a9f1d9 8px),
-        radial-gradient(circle at 90% 0, transparent 14px, #a9f1d9 14px);
-    border-radius: 10px 10px 0 0;
+    content: none;
 }
 
 .layer-middle::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 0;
-    width: 100%;
-    height: 15px;
-    background-image: 
-        radial-gradient(circle at 20% 0, transparent 12px, #f8bbc7 12px),
-        radial-gradient(circle at 40% 0, transparent 9px, #f8bbc7 9px),
-        radial-gradient(circle at 60% 0, transparent 13px, #f8bbc7 13px),
-        radial-gradient(circle at 80% 0, transparent 11px, #f8bbc7 11px);
-    border-radius: 10px 10px 0 0;
+    content: none;
 }
 
-/* Cherry on top */
+/* Cherry on top - Retiré pour l'instant pour simplifier, on peut le rajouter si besoin */
 .cake::before {
-    content: '';
-    position: absolute;
-    bottom: 185px;
-    left: 75px;
-    width: 16px;
-    height: 16px;
-    background: radial-gradient(circle, #ff2e4c, #c90023);
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    content: none;
 }
 
 .cake::after {
-    content: '';
-    position: absolute;
-    bottom: 193px;
-    left: 82px;
-    width: 2px;
-    height: 10px;
-    background: #006400;
-    transform: rotate(-20deg);
-    z-index: 9;
+    content: none;
 }
 
 @keyframes flicker {
@@ -281,40 +282,51 @@ h1 {
 }
 
 .controls {
-    margin-top: 30px;
+    margin-top: 40px; /* Plus d'espace au-dessus des boutons */
+    display: flex; /* Pour mieux aligner les boutons */
+    justify-content: center;
+    gap: 20px; /* Espace entre les boutons */
 }
 
 button {
-    background-color: #e83e8c;
+    background-color: #e75480; /* Rose principal du thème */
     color: white;
     border: none;
-    padding: 12px 24px;
-    margin: 0 10px;
-    border-radius: 50px;
+    padding: 15px 30px; /* Boutons plus grands */
+    border-radius: 30px; /* Plus arrondis */
     cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 10px rgba(232, 62, 140, 0.3);
+    font-size: 1rem; /* Taille de police ajustée */
+    font-weight: bold; /* Police en gras */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.25s ease-out;
+    box-shadow: 0 5px 15px rgba(231, 84, 128, 0.3);
+    letter-spacing: 0.5px; /* Espacement des lettres */
 }
 
 button:hover {
-    background-color: #d33277;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(232, 62, 140, 0.4);
+    background-color: #d1426f; /* Rose légèrement plus foncé au survol */
+    transform: translateY(-3px) scale(1.03); /* Effet de survol plus prononcé */
+    box-shadow: 0 8px 20px rgba(231, 84, 128, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 10px rgba(231, 84, 128, 0.3);
 }
 
 button:disabled {
     background-color: #cccccc;
+    color: #888888;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
 }
 
 .status {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #555;
-    height: 24px;
+    margin-top: 25px; /* Plus d'espace */
+    font-size: 1.1rem; /* Légèrement plus grand */
+    color: #4a4a4a; /* Couleur de texte plus douce */
+    min-height: 24px; /* Assurer une hauteur minimale pour éviter les sauts de page */
     font-weight: 500;
 }
 
@@ -326,72 +338,74 @@ button:disabled {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 100;
+    z-index: 0; /* Derrière le contenu principal */
     overflow: hidden;
 }
 
 .photo-container {
     position: absolute;
-    top: -300px; /* Commence hors de l'écran */
+    top: -350px; /* Commence un peu plus haut */
     transform: translateY(0);
-    animation: fallDown 3s forwards, swing 4s ease-in-out infinite alternate;
+    animation: fallDown 4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards, 
+               swing 3.5s ease-in-out infinite alternate;
     opacity: 0;
+    z-index: -1; /* S'assurer qu'elles sont derrière le .container */
 }
 
 @keyframes fallDown {
     0% {
-        top: -300px;
+        top: -350px;
         opacity: 0;
-        transform: translateY(0) rotate(-5deg);
+        transform: translateY(0) rotate(-8deg) scale(0.8);
     }
-    60% {
-        opacity: 1;
+    30% {
+        opacity: 0.7;
     }
     100% {
-        top: 0;
+        top: -20px; /* Tombe un peu plus bas, derrière le haut du container */
         opacity: 1;
-        transform: translateY(100px) rotate(3deg);
+        transform: translateY(var(--fall-translateY, 80px)) rotate(var(--fall-rotateZ, 5deg)) scale(1);
     }
 }
 
 @keyframes swing {
     0% {
-        transform: translateY(100px) rotate(-3deg);
+        transform: translateY(var(--fall-translateY, 80px)) rotate(calc(var(--fall-rotateZ, 5deg) - 3deg));
     }
     100% {
-        transform: translateY(100px) rotate(3deg);
+        transform: translateY(var(--fall-translateY, 80px)) rotate(calc(var(--fall-rotateZ, 5deg) + 3deg));
     }
 }
 
-.photo-delay-0 { animation-delay: 0s; left: 5%; }
-.photo-delay-1 { animation-delay: 1s; left: 15%; }
-.photo-delay-2 { animation-delay: 2s; left: 25%; }
-.photo-delay-3 { animation-delay: 3s; left: 35%; }
-.photo-delay-4 { animation-delay: 4s; left: 45%; }
-.photo-delay-5 { animation-delay: 5s; left: 55%; }
-.photo-delay-6 { animation-delay: 6s; left: 65%; }
-.photo-delay-7 { animation-delay: 7s; left: 75%; }
+/* Ajustement des délais et positions des photos */
+.photo-delay-0 { animation-delay: 0s; left: 5%; --fall-translateY: 70px; --fall-rotateZ: -6deg; }
+.photo-delay-1 { animation-delay: 0.8s; left: 18%; --fall-translateY: 90px; --fall-rotateZ: 4deg; }
+.photo-delay-2 { animation-delay: 1.6s; left: 30%; --fall-translateY: 60px; --fall-rotateZ: -5deg; }
+.photo-delay-3 { animation-delay: 2.4s; left: 45%; --fall-translateY: 100px; --fall-rotateZ: 3deg; }
+.photo-delay-4 { animation-delay: 3.2s; left: 60%; --fall-translateY: 75px; --fall-rotateZ: -4deg; }
+.photo-delay-5 { animation-delay: 4s; left: 72%; --fall-translateY: 95px; --fall-rotateZ: 5deg; }
+.photo-delay-6 { animation-delay: 4.8s; left: 85%; --fall-translateY: 65px; --fall-rotateZ: -3deg; }
+.photo-delay-7 { animation-delay: 5.6s; left: 2%; transform-origin: top right; --fall-translateY: 110px; --fall-rotateZ: 6deg; } /* Exemple d'une photo plus à gauche */
 
 .polaroid {
-    background: white;
-    padding: 15px 15px 45px 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transform: rotate(var(--rotation, -5deg));
+    background: #fff;
+    padding: 12px 12px 35px 12px; /* Padding ajusté */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
     position: relative;
-    transition: transform 0.3s ease;
-    width: 150px;
-    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 140px; /* Légèrement plus petit */
+    border: 1px solid #eee; /* Bordure subtile */
 }
 
 .polaroid:hover {
-    transform: rotate(var(--rotation, -5deg)) scale(1.1);
-    z-index: 10;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: rotate(var(--fall-rotateZ, 0deg)) scale(1.12); /* Rotation maintenue au survol */
+    z-index: 20; /* S'assurer qu'elle passe au-dessus des autres au survol */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .polaroid img {
     width: 100%;
-    height: 120px;
+    height: 110px; /* Hauteur ajustée */
     object-fit: cover;
     display: block;
 }

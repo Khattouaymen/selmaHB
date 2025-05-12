@@ -4,94 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gâteau d'Anniversaire Interactif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="photo-gallery">
-        <div class="photo-container photo-delay-0">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.20.jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-1">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.20 (1).jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-2">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.20 (2).jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-3">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.21.jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-4">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.21 (1).jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-5">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.21 (2).jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-6">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.22.21 (3).jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-        <div class="photo-container photo-delay-7">
-            <div class="polaroid">
-                <img src="img/WhatsApp Image 2025-05-12 at 17.23.42.jpeg" alt="Photo souvenir">
-                <div class="pin"></div>
-                <div class="string"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <h1>Soufflez dans le microphone pour éteindre la bougie!</h1>
-        
-        <div class="cake-container">
-            <div class="cake">
-                <div class="layer layer-top"></div>
-                <div class="layer layer-middle"></div>
-                <div class="layer layer-bottom"></div>
-                <div class="icing"></div>
-                <div class="candle">
-                    <div class="candle-body"></div>
-                    <div class="flame" id="flame"></div>
+    <main>
+        <div class="photo-gallery">
+            <div class="photo-container photo-delay-0">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.22.20.jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
                 </div>
-                <div class="plate"></div>
             </div>
-        </div>          <div class="controls">
-            <button id="startButton">Activer le microphone</button>
-            <button id="resetButton">Rallumer la bougie</button>
-        </div>        <div class="status" id="status">Cliquez sur "Activer le microphone" et soufflez!</div>
-        
-        <!-- Élément audio caché -->
-        <audio id="birthdaySong" loop autoplay>
-            <source src="audio-editor-output.mp3" type="audio/mp3">
-            Votre navigateur ne supporte pas l'élément audio.
-        </audio>
-    </div>
+            <div class="photo-container photo-delay-1">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.22.20 (2).jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
+                </div>
+            </div>
+            <div class="photo-container photo-delay-2">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.22.21.jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
+                </div>
+            </div>
+            <div class="photo-container photo-delay-3">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.22.21 (1).jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
+                </div>
+            </div>
+            <div class="photo-container photo-delay-4">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.22.21 (2).jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
+                </div>
+            </div>
+            <div class="photo-container photo-delay-5">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.22.21 (3).jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
+                </div>
+            </div>
+            <div class="photo-container photo-delay-6">
+                <div class="polaroid">
+                    <img src="img/WhatsApp Image 2025-05-12 at 17.23.42.jpeg" alt="Photo souvenir">
+                    <div class="pin"></div>
+                    <div class="string"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <header>
+                <h1>Soufflez dans le microphone pour éteindre la bougie!</h1>
+            </header>
+            
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="layer layer-top"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="icing"></div>
+                    <div class="candle">
+                        <div class="candle-body"></div>
+                        <div class="flame" id="flame"></div>
+                    </div>
+                    <div class="plate"></div>
+                </div>
+            </div>
+            
+            <section class="interaction-area">
+                <div class="controls">
+                    <button id="startButton">Activer le microphone</button>
+                    <button id="resetButton">Rallumer la bougie</button>
+                </div>
+                <div class="status" id="status">Cliquez sur "Activer le microphone" et soufflez!</div>
+            </section>
+            
+            <!-- Élément audio caché -->
+            <audio id="birthdaySong" loop autoplay>
+                <source src="audio-editor-output.mp3" type="audio/mp3">
+                Votre navigateur ne supporte pas l'élément audio.
+            </audio>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
