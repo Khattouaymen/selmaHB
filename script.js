@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', tryPlayMusic);
     window.addEventListener('scroll', tryPlayMusic);
       // Constantes pour la détection du souffle
-    const BLOW_THRESHOLD = 50; // Seuil pour détecter un souffle
-    const BLOW_DURATION = 500; // Durée minimale du souffle en ms
+    const BLOW_THRESHOLD = 35; // Seuil pour détecter un souffle
+    const BLOW_DURATION = 400; // Durée minimale du souffle en ms
     
     // Désactiver le bouton de réinitialisation au début
     resetButton.disabled = true;    // Fonction pour démarrer l'analyse du microphone
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Mettre à jour l'interface
             startButton.disabled = true;
-            statusElement.textContent = "Écoutant... Soufflez fort dans le microphone!";
+            statusElement.textContent = "Listening... Blow hard into the microphone!";
         } catch (error) {
             console.error("Erreur d'accès au microphone:", error);
             statusElement.textContent = "Erreur: impossible d'accéder au microphone";
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Détecter un souffle (volume élevé)
         if (average > BLOW_THRESHOLD && !isBlowing) {
             isBlowing = true;
-            statusElement.textContent = "Souffle détecté! Continuez...";
+            statusElement.textContent = "Blow detected! Keep going...";
             
             // Mettre en place un minuteur pour vérifier si le souffle dure assez longtemps
             blowingTimeout = setTimeout(() => {
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Arrêter si le souffle s'arrête avant la durée requise
             isBlowing = false;
             clearTimeout(blowingTimeout);
-            statusElement.textContent = "Essayez de souffler plus fort et plus longtemps!";
+            statusElement.textContent = "sotiii mzyaannn 3la mic!";
         }
     }
     
@@ -125,11 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
         flame.classList.add('extinguished');
         
         // Mettre à jour l'interface
-        statusElement.textContent = "Bravo! Vous avez éteint la bougie!";
+        statusElement.textContent = "sf baraka 3lik tfitiha hhhh";
         resetButton.disabled = false;
         
         // Jouer un son d'applaudissement (mais s'assurer que la musique continue)
         playApplauseSound();
+        
+        // Créer les effets de célébration
+        createCelebrationEffects();
         
         // S'assurer que la musique continue à jouer
         tryPlayMusic();
@@ -145,7 +148,43 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Impossible de jouer le son:", error);
         }
     }
-      // Fonction pour rallumer la bougie
+    
+    // Fonction pour créer les effets de célébration (ballons et éléments colorés)
+    function createCelebrationEffects() {
+        const celebrationContainer = document.getElementById('celebration-container');
+        celebrationContainer.innerHTML = ''; // Vider le conteneur
+        celebrationContainer.classList.remove('hidden');
+        
+        const colors = ['#FF5252', '#FFEB3B', '#2196F3', '#4CAF50', '#9C27B0', '#FF9800', '#00BCD4'];
+        const itemCount = 30; // Nombre total d'éléments
+
+        // Créer des ballons, confettis et étoiles
+        for (let i = 0; i < itemCount; i++) {
+            const type = Math.random() < 0.33 ? 'balloon' : (Math.random() < 0.66 ? 'confetti' : 'star');
+            const item = document.createElement('div');
+            
+            item.classList.add('celebration-item');
+            item.classList.add(type);
+            
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            item.style.backgroundColor = color;
+            
+            // Position aléatoire horizontale
+            item.style.left = `${Math.random() * 100}%`;
+            
+            // Délai d'animation aléatoire
+            item.style.animationDelay = `${Math.random() * 2}s`;
+            
+            celebrationContainer.appendChild(item);
+        }
+        
+        // Supprimer les effets après un délai (pour nettoyer la mémoire)
+        setTimeout(() => {
+            celebrationContainer.classList.add('hidden');
+        }, 6000);
+    }
+    
+    // Fonction pour rallumer la bougie
     resetButton.addEventListener('click', () => {
         // Réinitialiser la bougie
         flame.classList.remove('extinguished');
@@ -153,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Réinitialiser l'interface
         resetButton.disabled = true;
         startButton.disabled = false;
-        statusElement.textContent = "Cliquez sur 'Activer le microphone' et soufflez!";
+        statusElement.textContent = "Click on 'Activate microphone' and blow!";
         
         // Réinitialiser les variables
         isBlowing = false;
