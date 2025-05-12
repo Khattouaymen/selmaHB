@@ -25,6 +25,7 @@ body {
     overflow-x: hidden; /* Empêcher le défilement horizontal causé par les photos */
     background-image: radial-gradient(circle, rgba(255,223,230,0.5) 1px, transparent 1px);
     background-size: 20px 20px;
+    position: relative; /* Added for absolute positioning of static polaroids */
 }
 
 main {
@@ -100,8 +101,9 @@ h1 {
     bottom: 0;
     height: 70px; /* Plus épaisse */
     width: 230px;
-    background: linear-gradient(to right, #f7b2cc, #f39db9); /* Rose gâteau */
+    background: linear-gradient(to right, #f5a9bf, #ef97ac); /* Rose gâteau - ajusté */
     border-radius: 12px 12px 18px 18px; /* Coins inférieurs plus arrondis */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0px 2px 4px rgba(0,0,0,0.05); /* Adjusted shadow + inner shadow */
 }
 
 .layer-middle {
@@ -109,8 +111,9 @@ h1 {
     height: 65px; /* Plus épaisse */
     width: 210px; /* Légèrement plus étroite */
     left: 10px;
-    background: linear-gradient(to right, #f9cde0, #f5b8cf); /* Rose plus clair */
+    background: linear-gradient(to right, #f7c1d3, #f3afc4); /* Rose plus clair - ajusté */
     border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0px 2px 4px rgba(0,0,0,0.05); /* Adjusted shadow + inner shadow */
 }
 
 .layer-top {
@@ -118,55 +121,62 @@ h1 {
     height: 60px; /* Plus épaisse */
     width: 190px; /* Plus étroite */
     left: 20px;
-    background: linear-gradient(to right, #fce4ec, #f8c1d7); /* Rose très clair */
+    background: linear-gradient(to right, #fadde1, #f6ceda); /* Rose très clair - ajusté */
     border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0px 2px 4px rgba(0,0,0,0.05); /* Adjusted shadow + inner shadow */
 }
 
 .icing {
     position: absolute;
-    bottom: 165px;
-    left: 30px;
-    width: 160px;
-    height: 20px;
-    background: linear-gradient(to right, #ffffff, #f5f5f5);
-    border-radius: 10px 10px 0 0;
-    overflow: hidden;
-    box-shadow: inset 0px 2px 3px rgba(0,0,0,0.06); /* Added inner shadow */
+    bottom: 185px; /* Adjusted to sit better on the top layer */
+    left: 25px; /* Centered more with the narrower top layer */
+    width: 180px; /* Adjusted for top layer width */
+    height: 30px; /* Thicker icing */
+    background: linear-gradient(to bottom, #ffffff 70%, #fdf6f8 100%); /* Whiter icing with subtle pinkish tint at bottom */
+    border-radius: 50% / 15px; /* Rounded top, flatter bottom for drip effect */
+    overflow: visible; /* Allow drips to overflow */
+    box-shadow: inset 0px 3px 5px rgba(200,180,180,0.1), 0px 4px 8px rgba(0,0,0,0.1); /* Inner shadow and subtle drop shadow */
+    z-index: 2; /* Ensure icing is above layers */
 }
 
 .icing::before { /* Simule des coulures */
     content: '';
     position: absolute;
-    bottom: -10px;
-    left: 20%;
-    width: 20px;
-    height: 20px;
-    background: inherit; /* Hérite du fond du glaçage */
+    bottom: -12px; /* Drip further down */
+    left: 25%;
+    width: 28px; /* Wider drip */
+    height: 28px;
+    background: inherit;
     border-radius: 50%;
-    box-shadow: 50px 0 0 0 inherit; /* Crée une autre coulure à côté */
+    box-shadow: 45px 2px 0 0px inherit, /* Another drip, slightly offset */
+                -30px -2px 0 -2px rgba(255,255,255,0.5); /* Highlight on a drip */
 }
 
 .icing::after { /* Simule des coulures */
     content: '';
     position: absolute;
-    bottom: -12px;
+    bottom: -15px; /* Drip further down */
     left: 60%;
-    width: 25px;
-    height: 25px;
+    width: 32px; /* Wider drip */
+    height: 32px;
     background: inherit;
     border-radius: 50%;
+    box-shadow: 20px -3px 0 -1px inherit; /* Another smaller drip */
 }
 
 .candle {
     position: absolute;
     bottom: 195px; /* Sur le glaçage */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px; /* Define candle width */
+    z-index: 3; /* Assurer que la bougie est au-dessus du glaçage */
 }
 
 .candle-body {
-    width: 12px;
+    width: 100%; /* Takes full width of .candle (12px) */
     height: 40px;
     background: linear-gradient(to right, #ff9a9e, #fad0c4);
-    margin: 0 auto;
     border-radius: 3px;
     position: relative;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Added subtle shadow */
@@ -214,7 +224,7 @@ h1 {
     position: absolute; /* Changé de relative */
     left: 50%;
     transform: translateX(-50%);
-    bottom: 50px; /* Positionné au-dessus de la mèche */
+    bottom: 48px; /* Positionné sur la mèche (40px body + 8px wick extension) */
     box-shadow: 0 0 20px 10px rgba(251, 140, 0, 0.5), 0 0 30px 15px rgba(255, 236, 179, 0.4); /* Lueur plus diffuse */
 }
 
@@ -346,7 +356,7 @@ button:disabled {
     position: absolute;
     top: -350px; /* Commence un peu plus haut */
     transform: translateY(0);
-    animation: fallDown 4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards, 
+    animation: fallDown 6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards, 
                swing 3.5s ease-in-out infinite alternate;
     opacity: 0;
     z-index: -1; /* S'assurer qu'elles sont derrière le .container */
@@ -377,15 +387,29 @@ button:disabled {
     }
 }
 
-/* Ajustement des délais et positions des photos */
-.photo-delay-0 { animation-delay: 0s; left: 5%; --fall-translateY: 70px; --fall-rotateZ: -6deg; }
-.photo-delay-1 { animation-delay: 0.8s; left: 18%; --fall-translateY: 90px; --fall-rotateZ: 4deg; }
-.photo-delay-2 { animation-delay: 1.6s; left: 30%; --fall-translateY: 60px; --fall-rotateZ: -5deg; }
-.photo-delay-3 { animation-delay: 2.4s; left: 45%; --fall-translateY: 100px; --fall-rotateZ: 3deg; }
-.photo-delay-4 { animation-delay: 3.2s; left: 60%; --fall-translateY: 75px; --fall-rotateZ: -4deg; }
-.photo-delay-5 { animation-delay: 4s; left: 72%; --fall-translateY: 95px; --fall-rotateZ: 5deg; }
-.photo-delay-6 { animation-delay: 4.8s; left: 85%; --fall-translateY: 65px; --fall-rotateZ: -3deg; }
-.photo-delay-7 { animation-delay: 5.6s; left: 2%; transform-origin: top right; --fall-translateY: 110px; --fall-rotateZ: 6deg; } /* Exemple d'une photo plus à gauche */
+/* Ajustement des délais et positions des photos (7 photos) - Delais séquentiels 2s, positions redistribuées */
+.photo-delay-0 { animation-delay: 0s;  left: 5%;   --fall-translateY: 70px;  --fall-rotateZ: -6deg; }
+.photo-delay-1 { animation-delay: 2s;  left: 19%;  --fall-translateY: 60px;  --fall-rotateZ: -5deg; }
+.photo-delay-2 { animation-delay: 4s;  left: 33%;  --fall-translateY: 100px; --fall-rotateZ: 3deg;  }
+.photo-delay-3 { animation-delay: 6s;  left: 47%;  --fall-translateY: 75px;  --fall-rotateZ: -4deg; }
+.photo-delay-4 { animation-delay: 8s;  left: 61%;  --fall-translateY: 95px;  --fall-rotateZ: 5deg;  }
+.photo-delay-5 { animation-delay: 10s; left: 75%;  --fall-translateY: 65px;  --fall-rotateZ: -3deg; }
+.photo-delay-6 { animation-delay: 12s; left: 90%; --fall-translateY: 100px; --fall-rotateZ: 8deg; } /* Adjusted */
+
+/* Animation for falling photos from src folder */
+.photo-delay-7 {
+    animation-delay: 3s;
+    left: 20%;
+    --fall-translateY: 180vh; /* Further increased fall distance */
+    --fall-rotateZ: -15deg;
+}
+
+.photo-delay-8 {
+    animation-delay: 4s;
+    left: 70%;
+    --fall-translateY: 160vh; /* Increased fall distance */
+    --fall-rotateZ: 10deg;
+}
 
 .polaroid {
     background: #fff;
@@ -437,4 +461,77 @@ button:disabled {
 /* Style pour les éléments cachés */
 .hidden {
     display: none;
+}
+
+/* Styles for static polaroids around the cake container */
+.static-polaroid {
+    position: absolute;
+    width: 180px; /* Further increased width */
+    background: #fff;
+    padding: 15px 15px 35px 15px; /* Adjusted padding for larger size */
+    border: 1px solid #d8d8d8; /* Slightly darker border */
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.22); /* Enhanced shadow for larger size */
+    z-index: 0; 
+}
+
+.static-polaroid img {
+    width: 100%;
+    height: 140px; /* Further increased height */
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px; /* Adjusted space for larger size */
+}
+
+/* Positioning for individual static polaroids - adjusted top and left values */
+#static-photo-1 {
+    top: 60%; /* Lowered the position further */
+    left: 20%; /* Moved to the right */
+    transform: rotate(-20deg); /* Slightly more rotation */
+}
+
+#static-photo-2 {
+    top: 18%; /* Adjusted top */
+    left: 82%; /* Adjusted for new size and balance */
+    transform: rotate(15deg); /* Slightly more rotation */
+}
+
+#static-photo-3 {
+    top: 55%; /* Adjusted top */
+    left: 2%;  /* Moved further left */
+    transform: rotate(8deg); 
+}
+
+#static-photo-4 {
+    top: 60%; /* Adjusted top */
+    left: 78%; /* Adjusted for new size and balance */
+    transform: rotate(-10deg); 
+}
+
+#static-photo-5 {
+    top: 30%; /* Adjusted top */
+    left: 0%;  /* Moved further left */
+    transform: rotate(22deg); 
+}
+
+#static-photo-6 {
+    top: 35%; /* Adjusted top */
+    left: 82%; /* Adjusted for new size and balance */
+    transform: rotate(-15deg); 
+}
+
+/* Styles for the countdown and message display */
+#countdown-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #e75480;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }

@@ -164,4 +164,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // S'assurer que la musique continue à jouer
         tryPlayMusic();
     });
+
+    // Function to handle the countdown and display messages
+    function startCountdown() {
+        const countdownDisplay = document.getElementById('countdown-display');
+        const messages = ['1', '2', '3', 'tfi chma3', 'sotee mzyannnn'];
+        let index = 0;
+
+        countdownDisplay.classList.remove('hidden');
+
+        const interval = setInterval(() => {
+            if (index < messages.length) {
+                countdownDisplay.textContent = messages[index];
+                index++;
+            } else {
+                clearInterval(interval);
+                countdownDisplay.classList.add('hidden');
+                // Add logic to activate the microphone here
+            }
+        }, 1000);
+    }
+
+    // Attach the countdown to the existing startButton instead of micButton
+    if (startButton) {
+        startButton.addEventListener('click', startCountdown);
+    }
 });
